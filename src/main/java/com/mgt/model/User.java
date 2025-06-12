@@ -27,22 +27,33 @@ public class User {
     @JsonManagedReference
     private Patient patient;
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private Doctor doctor;
+
+
 
     public User() {
     }
 
+    
+ 
 
-    public User(Long id, String firstName, String lastName,  String username, String password,
-            Role role, Patient patient) {
+
+    public User(Long id, String firstName, String lastName, String username, String password, Role role,
+            Patient patient, Doctor doctor) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-
         this.username = username;
         this.password = password;
         this.role = role;
         this.patient = patient;
+        this.doctor = doctor;
     }
+
+
+
 
 
     public Long getId() {
@@ -117,6 +128,18 @@ public class User {
     public void setPatient(Patient patient) {
         this.patient = patient;
     }
+
+
+    public Doctor getDoctor() {
+        return doctor;
+    }
+
+
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
+    }
+
+    
 
     
 }

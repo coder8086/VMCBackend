@@ -1,5 +1,9 @@
 package com.mgt.model;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -51,10 +55,23 @@ public class Doctor
     @Column(name="designation")
     private String designation;
 
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JsonBackReference
+    private User user;
+
+    
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
+    private List<videoCalling> videoCalls;
+
     public Doctor() {
     }
 
-    public Doctor(Long id, String firstName, String lastName, String gender, String email, String phoneNumber, String username, String password, String confirmPassword, String profileImage, String specialization, String qualification, String designation) {
+    
+
+    public Doctor(Long id, String firstName, String lastName, String gender, String email, String phoneNumber,
+            String username, String password, String confirmPassword, String profileImage, String specialization,
+            String qualification, String designation, User user, List<videoCalling> videoCalls) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -68,7 +85,11 @@ public class Doctor
         this.specialization = specialization;
         this.qualification = qualification;
         this.designation = designation;
+        this.user = user;
+        this.videoCalls = videoCalls;
     }
+
+
 
     public Long getId() {
         return id;
@@ -173,4 +194,18 @@ public class Doctor
     public void setDesignation(String designation) {
         this.designation = designation;
     }
+
+
+
+    public User getUser() {
+        return user;
+    }
+
+
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    
 }
