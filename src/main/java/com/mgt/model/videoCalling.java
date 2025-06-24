@@ -7,7 +7,7 @@ public class videoCalling {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     private String doctorName;
 
@@ -21,9 +21,27 @@ public class videoCalling {
     @JoinColumn(name = "doctor_id")  // Foreign key in video_calling table
     private Doctor doctor;
 
-    // Getters and Setters
+    
 
-    public int getId() {
+  
+    public videoCalling() {
+    }
+
+    
+
+    public videoCalling(long id, String doctorName, String specialization, int experience, String videoLink,
+            Doctor doctor) {
+        this.id = id;
+        this.doctorName = doctorName;
+        this.specialization = specialization;
+        this.experience = experience;
+        this.videoLink = videoLink;
+        this.doctor = doctor;
+    }
+
+
+
+    public long getId() {
         return id;
     }
 
