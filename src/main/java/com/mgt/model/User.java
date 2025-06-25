@@ -23,6 +23,8 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    private boolean isProfileCreated;
+
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonManagedReference
     private Patient patient;
@@ -40,7 +42,7 @@ public class User {
  
 
 
-    public User(Long id, String firstName, String lastName, String username, String password, Role role,
+    public User(Long id, String firstName, String lastName, String username, String password,boolean isProfileCreated, Role role,
             Patient patient, Doctor doctor) {
         this.id = id;
         this.firstName = firstName;
@@ -50,6 +52,7 @@ public class User {
         this.role = role;
         this.patient = patient;
         this.doctor = doctor;
+        this.isProfileCreated= isProfileCreated;
     }
 
 
@@ -137,6 +140,22 @@ public class User {
 
     public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
+    }
+
+
+
+
+
+    public boolean isProfileCreated() {
+        return isProfileCreated;
+    }
+
+
+
+
+
+    public void setProfileCreated(boolean isProfileCreated) {
+        this.isProfileCreated = isProfileCreated;
     }
 
     

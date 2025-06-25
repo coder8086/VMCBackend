@@ -17,10 +17,6 @@ public class videoCalling {
 
     private String videoLink;
 
-    @ManyToOne
-    @JoinColumn(name = "doctor_id")  // Foreign key in video_calling table
-    private Doctor doctor;
-
     
 
   
@@ -29,14 +25,13 @@ public class videoCalling {
 
     
 
-    public videoCalling(long id, String doctorName, String specialization, int experience, String videoLink,
-            Doctor doctor) {
+    public videoCalling(long id, String doctorName, String specialization, int experience, String videoLink) {
         this.id = id;
         this.doctorName = doctorName;
         this.specialization = specialization;
         this.experience = experience;
         this.videoLink = videoLink;
-        this.doctor = doctor;
+
     }
 
 
@@ -81,11 +76,5 @@ public class videoCalling {
         this.videoLink = videoLink;
     }
 
-    public Doctor getDoctor() {
-        return doctor;
-    }
-
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
-    }
+    
 }

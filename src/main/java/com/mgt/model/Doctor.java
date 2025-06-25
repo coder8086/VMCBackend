@@ -1,6 +1,5 @@
 package com.mgt.model;
 
-import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -15,32 +14,17 @@ public class Doctor
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Personal Information
-    @Column(name="firstName")
-    private String firstName;
-
-    @Column(name="lastName")
-    private String lastName;
+    @Column(name = "fullName")
+    private String fullName;
 
     @Column(name="gender")
     private String gender;
 
-    @Column(name="email")
-    private String email;
+    @Column(name="address")
+    private String address;
 
     @Column(name="phoneNumber")
     private String phoneNumber;
-
-    // Account Information
-    @Column(name="username")
-    private String username;
-
-    @Column(name="password")
-    private String password;
-
-    @Transient
-    @Column(name="confirmPassword")
-    private String confirmPassword;
 
     @Column(name="profileImage")
     private String profileImage; // file path or URL
@@ -55,41 +39,31 @@ public class Doctor
     @Column(name="designation")
     private String designation;
 
+    @Column(name = "experience")
+    private String experience;
+
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @JsonBackReference
     private User user;
 
-    
-    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
-    private List<videoCalling> videoCalls;
-
     public Doctor() {
     }
 
-    
-
-    public Doctor(Long id, String firstName, String lastName, String gender, String email, String phoneNumber,
-            String username, String password, String confirmPassword, String profileImage, String specialization,
-            String qualification, String designation, User user, List<videoCalling> videoCalls) {
+    public Doctor(Long id, String fullName, String gender, String address, String phoneNumber, String profileImage,
+            String specialization, String qualification, String designation, String experience, User user) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.fullName = fullName;
         this.gender = gender;
-        this.email = email;
+        this.address = address;
         this.phoneNumber = phoneNumber;
-        this.username = username;
-        this.password = password;
-        this.confirmPassword = confirmPassword;
         this.profileImage = profileImage;
         this.specialization = specialization;
         this.qualification = qualification;
         this.designation = designation;
+        this.experience = experience;
         this.user = user;
-        this.videoCalls = videoCalls;
     }
-
-
 
     public Long getId() {
         return id;
@@ -99,20 +73,12 @@ public class Doctor
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getGender() {
@@ -123,12 +89,12 @@ public class Doctor
         this.gender = gender;
     }
 
-    public String getEmail() {
-        return email;
+    public String getAddress() {
+        return address;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getPhoneNumber() {
@@ -137,30 +103,6 @@ public class Doctor
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
     }
 
     public String getProfileImage() {
@@ -195,17 +137,22 @@ public class Doctor
         this.designation = designation;
     }
 
+    public String getExperience() {
+        return experience;
+    }
 
+    public void setExperience(String experience) {
+        this.experience = experience;
+    }
 
     public User getUser() {
         return user;
     }
 
-
-
     public void setUser(User user) {
         this.user = user;
     }
 
+    
     
 }
