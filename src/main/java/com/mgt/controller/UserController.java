@@ -114,7 +114,7 @@ public class UserController
             response.put("lastName", user.getLastName());
             response.put("email", user.getUsername());
             response.put("role", user.getRole());
-
+            response.put("isProfileCreated", user.isProfileCreated());
             return ResponseEntity.ok(response);
 
         } catch (Exception e) {
