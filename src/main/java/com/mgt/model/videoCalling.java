@@ -3,18 +3,23 @@ package com.mgt.model;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "videoCallContainer")
 public class videoCalling {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(name = "doctorName")
     private String doctorName;
 
+    @Column(name = "specialization")
     private String specialization;
 
+    @Column(name = "experience")
     private int experience;
 
+    @Column(name = "videoLink")
     private String videoLink;
 
     

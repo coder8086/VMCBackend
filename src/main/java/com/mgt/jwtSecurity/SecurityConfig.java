@@ -56,7 +56,7 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/api/welcome",
                                 "/api/register",
-                                "/api/login","/api/sendOtp","/api/verifyOtp","/api/addAppointment","/api/getAppointments","/api/setVideoLink","/api/testVideoCalling"
+                                "/api/login","/api/sendOtp","/api/verifyOtp","/api/addAppointment","/api/getAppointments","/api/setVideoLink","/api/testVideoCalling","/api/getAllVideoCallings"
                                )
                         .permitAll()
                         .anyRequest().authenticated())

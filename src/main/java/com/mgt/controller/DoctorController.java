@@ -70,4 +70,40 @@ public class DoctorController {
                     .body(Collections.singletonMap("message", "Error saving profile: " + e.getMessage()));
         }
     }
+
+    @GetMapping("/doctor/by-user")
+public ResponseEntity<?> getDoctorByUserIdFromToken(
+        @RequestHeader(value = "Authorization", required = false) String authHeader) {
+    try {
+        // Validate JWT Bearer token
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(Collections.singletonMap("message", "Missing or invalid Authorization header"));
+        }
+
+        String token = authHeader.substring(7);
+        Long userId = jwtService.extractUserId(token); // Method should extract user ID from token
+
+        if (userId == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(Collections.singletonMap("message", "Invalid JWT token"));
+        }
+
+        // Fetch doctor by user ID
+        Doctor doctor = doctorRepo.findByUserId(userId);
+
+        if (doctor == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Collections.singletonMap("message", "Doctor not found for user ID: " + userId));
+        }
+
+        return ResponseEntity.ok(doctor);
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(Collections.singletonMap("message", "Error retrieving doctor: " + e.getMessage()));
+    }
+}
+
 }
