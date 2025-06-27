@@ -2,9 +2,6 @@ package com.mgt.service;
 
 import com.mgt.model.Doctor;
 
-import java.util.List;
-import java.util.Optional;
-
 public interface DoctorService
 {
     Doctor saveDoctor(Doctor doctor);
