@@ -13,6 +13,9 @@ public class videoCalling {
     @Column(name = "doctorName")
     private String doctorName;
 
+    @Column(name = "doctorId")
+    private long doctorId; 
+
     @Column(name = "specialization")
     private String specialization;
 
@@ -30,9 +33,10 @@ public class videoCalling {
 
     
 
-    public videoCalling(long id, String doctorName, String specialization, int experience, String videoLink) {
+    public videoCalling(long id, String doctorName, long doctorId, String specialization, int experience, String videoLink) {
         this.id = id;
         this.doctorName = doctorName;
+        this.doctorId = doctorId;
         this.specialization = specialization;
         this.experience = experience;
         this.videoLink = videoLink;
@@ -79,6 +83,14 @@ public class videoCalling {
 
     public void setVideoLink(String videoLink) {
         this.videoLink = videoLink;
+    }
+
+    public long getDoctorId() {
+        return doctorId;
+    }
+
+    public void setDoctorId(long doctorId) {
+        this.doctorId = doctorId;
     }
 
     
