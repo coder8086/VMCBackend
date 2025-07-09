@@ -90,6 +90,8 @@ public ResponseEntity<?> addPatient(
         // Save patient
         patientRepo.save(patient);
 
+        optionalUser.get().setProfileCreated(true);
+
         return ResponseEntity.ok(Collections.singletonMap("message", "Saved successfully!"));
 
     } catch (Exception e) {

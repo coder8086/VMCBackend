@@ -53,7 +53,7 @@ public class JwtService {
                 .setClaims(claims)
                 .setSubject(email) // Subject is email
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 30)) // 30 minutes
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 *6 )) //  6hr 
                 .signWith(getSignKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
